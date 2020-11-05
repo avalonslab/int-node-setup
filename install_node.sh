@@ -6,7 +6,7 @@
 # Script to install the INT testnet onto a
 # Debian or Ubuntu system.
 #
-# Usage: wget -qO- https://raw.githubusercontent.com/avalonslab/int-misc/master/install_testnet4.sh | bash -
+# Usage: bash <(wget -qO- https://raw.githubusercontent.com/avalonslab/int-node-setup/main/install_node.sh)
 
 cat << 'FIG'
  _  __    _     ____   __  __     _
@@ -212,7 +212,7 @@ sync_status=$(curl -X POST --silent --data '{"jsonrpc":"2.0","method":"int_synci
 if [ -n "${sync_status}" -a "${sync_status}" != "false" ]; then
     currentBlock=$(echo ${sync_status} | jq --raw-output '.currentBlock')
     highestBlock=$(echo ${sync_status} | jq --raw-output '.highestBlock')
-    echo "$(timestamp) Sync Status: Node is syncing > Block: $((currentBlock))/$((highestBlock))"
+    echo "$(timestamp) Sync Status: Node is syncing [Block: $((currentBlock))/$((highestBlock))]"
     exit 0
 fi
 
