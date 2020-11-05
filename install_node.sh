@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Discussion, issues and change requests at:
-#   https://t.me/INTDevelopment
-#
 # Script to install a INT Node onto a
 # Debian or Ubuntu system.
 #
-# Usage: bash <(wget -qO- https://raw.githubusercontent.com/avalonslab/int-node-setup/main/install_node.sh)
+# Discussion, issues and change requests at:
+#   https://t.me/INTDevelopment
+#
+# Usage: wget -qO- https://raw.githubusercontent.com/avalonslab/int-misc/master/install_testnet4.sh | bash -
 
 cat << 'FIG'
  _  __    _     ____   __  __     _
@@ -218,6 +218,7 @@ fi
 
 current_block_height=$(curl -X POST --silent --data '{"jsonrpc":"2.0","method":"int_getBlockByNumber","params":["latest", true],"id":1}' -H 'content-type:application/json;' ${RPC_URL} | jq --raw-output '.result.number')
 if [ "$((current_block_height))" -ge 0 ]; then
+    echo "$(timestamp) Current Block Height: $((current_block_height))"
 
     if [ -e "${HOME}/intchain/old_height" ]; then
 	    old_height=$(cat "${HOME}/intchain/old_height")
@@ -225,12 +226,11 @@ if [ "$((current_block_height))" -ge 0 ]; then
         old_height=0
     fi
 
-    if [ "$((current_block_height))" -gt "${old_height}" ]; then
-        echo "$(timestamp) Current Block Height: $((current_block_height))"
-        echo "$((current_block_height))" > "${HOME}/intchain/old_height"
-    else
+    if [ "$((current_block_height))" == "${old_height}" ]; then
 	    echo "$(timestamp) Sync Status: Blockchain stuck at block $((current_block_height)) > Restarting the node"
         restart_service
+    elif [ "$((current_block_height))" -gt "${old_height}" ]; then
+        echo "$((current_block_height))" > "${HOME}/intchain/old_height"
     fi
 else
     echo "$(timestamp) Current Block Height: Cannot fetch current block height"
