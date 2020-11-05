@@ -3,7 +3,7 @@
 # Discussion, issues and change requests at:
 #   https://t.me/INTDevelopment
 #
-# Script to install the INT testnet onto a
+# Script to install a INT Node onto a
 # Debian or Ubuntu system.
 #
 # Usage: bash <(wget -qO- https://raw.githubusercontent.com/avalonslab/int-node-setup/main/install_node.sh)
