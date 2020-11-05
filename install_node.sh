@@ -217,7 +217,7 @@ if [ -n "${sync_status}" -a "${sync_status}" != "false" ]; then
 fi
 
 current_block_height=$(curl -X POST --silent --data '{"jsonrpc":"2.0","method":"int_getBlockByNumber","params":["latest", true],"id":1}' -H 'content-type:application/json;' ${RPC_URL} | jq --raw-output '.result.number')
-if [ "${current_block_height}" -ge 0 ]; then
+if [ "$((current_block_height))" -ge 0 ]; then
 
     if [ -e "${HOME}/intchain/old_height" ]; then
 	    old_height=$(cat "${HOME}/intchain/old_height")
