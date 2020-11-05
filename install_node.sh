@@ -269,5 +269,5 @@ echo "##### Installation completed! #####"
 echo "If you have found this tutorial useful, please consider delegating some of your votes to the KARMA validator node: INT12kokQgcogRnGGguN6TpTfHY4FV8YrdQSq"
 echo
 echo "Type 'cat ${LOG_FILE}' to view the install log file."
-echo "Type 'journalctl -f -u int' to view the log file of your node."
+echo "Type 'journalctl -f -u intchain' to view the log file of your node."
 echo "Type 'cat /var/log/health_monitor.log' to view the health monitor log file."
