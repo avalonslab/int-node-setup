@@ -221,20 +221,21 @@ if [ "$((current_block_height))" -ge 0 ]; then
     echo "$(timestamp) Current Block Height: $((current_block_height))"
 
     if [ -e "${HOME}/intchain/old_height" ]; then
-	    old_height=$(cat "${HOME}/intchain/old_height")
+        old_height=$(cat "${HOME}/intchain/old_height")
     else
         old_height=0
     fi
 
     if [ "$((current_block_height))" == "${old_height}" ]; then
-	    echo "$(timestamp) Sync Status: Blockchain stuck at block $((current_block_height)) > Restarting the node"
+        echo "$(timestamp) Sync Status: Blockchain stuck at block $((current_block_height)) > Restarting the node"
         restart_service
     elif [ "$((current_block_height))" -gt "${old_height}" ]; then
         echo "$((current_block_height))" > "${HOME}/intchain/old_height"
+    else
+        echo "$(timestamp) Sync Status: Cannot compare 'current_block_height' against 'old_height'"
     fi
 else
     echo "$(timestamp) Current Block Height: Cannot fetch current block height"
-    exit 1
 fi
 
 peers=$(curl -X POST --silent --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":1}' -H 'content-type: application/json;' ${RPC_URL} | jq --raw-output '.result')
