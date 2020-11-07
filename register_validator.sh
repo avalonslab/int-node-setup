@@ -19,7 +19,7 @@ trap 'error ${LINENO}' ERR
 KEYSTORE_PATH="${HOME}/.intchain/testnet/keystore/"
 RPC_URL="http://localhost:8555/testnet"
 SECURITY_DEPOSIT="0xDE0B6B3A7640000" # 1 INT
-BALANCE_NEEDED="2"
+BALANCE_NEEDED="0xF43FC2C04EE0000" #1.1 INT
 PREFIX="0x"
 COMMISSION=10
 
@@ -169,7 +169,7 @@ register_validator () {
 
 enough_balance () {
     WALLET_BALANCE=$(curl -X POST --silent --data "$(generate_balance_data)" --header 'content-type: application/json;' ${RPC_URL} | jq --raw-output '.result')
-    if [ -z "${WALLET_BALANCE}" ] || [ $((WALLET_BALANCE)) -lt "${BALANCE_NEEDED}" ]; then
+    if [ -z "${WALLET_BALANCE}" ] || [ $((WALLET_BALANCE)) -lt "$((BALANCE_NEEDED))" ]; then
         return 1
     fi
     echo "Wallet Balance: $(expr $((WALLET_BALANCE)) / 1000000000000000000) INT"
