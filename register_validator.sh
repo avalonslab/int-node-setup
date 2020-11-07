@@ -128,7 +128,12 @@ create_new_wallet () {
 }
 
 create_bls_key () {
-    PRIV_VALIDATOR_DATA=$($(command -v intchain) --testnet create-validator ${WALLET_ADDRESS})
+    if [ -e "${HOME}/.intchain/testnet/priv_validator.json" ]; then
+        PRIV_VALIDATOR_DATA=$(cat "${HOME}/.intchain/testnet/priv_validator.json")
+    else
+        PRIV_VALIDATOR_DATA=$($(command -v intchain) --testnet create-validator ${WALLET_ADDRESS})
+    fi
+ 
     if [ -z "${PRIV_VALIDATOR_DATA}" ]; then
         echo "Could not create BLS keys > exiting"
         exit 1
