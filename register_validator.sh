@@ -3,7 +3,7 @@
 # Script to register a INT validator node
 #
 # Discussion, issues and change requests at:
-# https://t.me/INTDevelopment
+#   https://t.me/INTDevelopment
 #
 # Usage: bash <(wget -qO- https://raw.githubusercontent.com/avalonslab/int-misc/master/register_validator_testnet4.sh)
 
