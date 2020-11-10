@@ -241,7 +241,6 @@ else
         unlock_wallet
         register_validator
         backup_node
-        pm2 restart all >> /dev/null 2>&1
         systemctl restart intchain >> /dev/null 2>&1
     fi
 fi
