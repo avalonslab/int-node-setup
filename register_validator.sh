@@ -233,7 +233,7 @@ if [ -z "${WALLET_ADDRESS}" ]; then
     exit 1
 else
     if ! enough_balance; then
-        echo "There is not enough INT in your wallet ${WALLET_ADDRESS}, please deposit at least $((BALANCE_NEEDED)) INT and start this script again."
+        echo "There is not enough INT in your wallet ${WALLET_ADDRESS}, please deposit at least $(expr $((BALANCE_NEEDED)) / 1000000000000000000) INT and start this script again."
         exit 1
     else
         create_bls_key
