@@ -32,7 +32,7 @@ GO_VERSION="1.15.3"
 #CHAIN_ID="intchain"
 CHAIN_ID="testnet"
 RPC_PORT="8555"
-RPC_URL="http://localhost:{RPC_PORT}/${CHAIN_ID}"
+RPC_URL="http://localhost:${RPC_PORT}/${CHAIN_ID}"
 #SNAPSHOT="https://files.avalonslab.dev/testnet4_bootstrap.tar.gz"
 
 #if [ "$1" == "testnet" ]; then
