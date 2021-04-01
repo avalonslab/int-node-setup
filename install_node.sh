@@ -28,7 +28,7 @@ error() {
 trap 'error ${LINENO}' ERR
 
 LOG_FILE="${HOME}/install_int_node.log"
-GO_VERSION="1.15.3"
+GO_VERSION="1.16.2"
 #CHAIN_ID="intchain"
 CHAIN_ID="testnet"
 RPC_PORT="8555"
@@ -117,7 +117,7 @@ source "${HOME}/.profile"
 if [ "${CHAIN_ID}" == "testnet" ]; then
         intchain_exec="intchain --testnet"
         echo "Cloning 'intchain testnet' to '${HOME}/intchain'"
-        git clone --branch testnet https://github.com/intfoundation/intchain "${HOME}/intchain" >> $LOG_FILE 2>&1
+        git clone --branch dev https://github.com/intfoundation/intchain "${HOME}/intchain" >> $LOG_FILE 2>&1
 else
         intchain_exec="intchain"
         echo "Cloning 'intchain mainnet' to '${HOME}/intchain'"
