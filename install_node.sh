@@ -117,7 +117,7 @@ source "${HOME}/.profile"
 if [ "${CHAIN_ID}" == "testnet" ]; then
         intchain_exec="intchain --testnet"
         echo "Cloning 'intchain testnet' to '${HOME}/intchain'"
-        git clone --branch dev https://github.com/intfoundation/intchain "${HOME}/intchain" >> $LOG_FILE 2>&1
+        git clone --branch testnet https://github.com/intfoundation/intchain "${HOME}/intchain" >> $LOG_FILE 2>&1
 else
         intchain_exec="intchain"
         echo "Cloning 'intchain mainnet' to '${HOME}/intchain'"
