@@ -244,5 +244,5 @@ else
         register_validator
         backup_node
         systemctl restart intchain >> /dev/null 2>&1
-    fi
+    #fi
 fi
