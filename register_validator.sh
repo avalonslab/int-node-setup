@@ -230,10 +230,10 @@ else
     create_new_wallet
 fi
 
-#if [ -z "${WALLET_ADDRESS}" ]; then
-#    echo "Could not get the address of your wallet > exiting"
-#    exit 1
-#else
+if [ -z "${WALLET_ADDRESS}" ]; then
+    echo "Could not get the address of your wallet > exiting"
+    exit 1
+else
     #if ! enough_balance; then
     #    echo "There is not enough INT in your wallet ${WALLET_ADDRESS}, please deposit at least 1m + 1 INT and start this script again." # $(expr $((BALANCE_NEEDED)) / 1000000000000000000)
     #    exit 1
@@ -244,5 +244,5 @@ fi
         register_validator
         backup_node
         systemctl restart intchain >> /dev/null 2>&1
-    #fi
-fi
+    fi
+#fi
