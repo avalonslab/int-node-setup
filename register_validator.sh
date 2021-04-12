@@ -208,7 +208,7 @@ check_existing_wallets () {
             continue
         fi
 
-        WALLET_ADDRESS=$(echo ${filename} | sed 's|.*--||')
+        WALLET_ADDRESS=${PREFIX}$(echo ${filename} | sed 's|.*--||')
 
         echo "# Please type in your wallet password!"
         read -sp "Password: " WALLET_PASSWORD </dev/tty
