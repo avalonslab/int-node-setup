@@ -135,7 +135,7 @@ create_bls_key () {
     else
         PRIV_VALIDATOR_DATA=$($(command -v intchain) --testnet create-validator ${WALLET_ADDRESS})
     fi
- 
+
     if [ -z "${PRIV_VALIDATOR_DATA}" ]; then
         echo "Could not create BLS keys > exiting"
         exit 1
@@ -230,7 +230,7 @@ else
     create_new_wallet
 fi
 
-if [ -z "${WALLET_ADDRESS}" ]; then
+if [[ -z "${WALLET_ADDRESS}" ]]; then
     echo "Could not get the address of your wallet > exiting"
     exit 1
 else
@@ -244,5 +244,5 @@ else
         register_validator
         backup_node
         systemctl restart intchain >> /dev/null 2>&1
-    fi
-#fi
+    #fi
+fi
