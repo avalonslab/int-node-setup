@@ -27,17 +27,30 @@ error() {
 }
 trap 'error ${LINENO}' ERR
 
+
+echo "Which network do you want to use?"
+numchoice=1
+while [ $numchoice != 0 ]; do
+ echo -n "
+ 1. Mainnet
+ 2. Testnet
+ 0. Exit
+
+Enter choice [ 1 | 2 ]: "
+ read numchoice
+ case $numchoice in
+        1 ) CHAIN_ID="intchain";break ;;
+        2 ) CHAIN_ID="testnet";break ;;
+        0 ) break ;;
+        * ) echo -n "You entered an incorrect option. Please try again." ;;
+ esac
+done
+
 LOG_FILE="${HOME}/install_int_node.log"
-GO_VERSION="1.16.2"
-#CHAIN_ID="intchain"
-CHAIN_ID="testnet"
+GO_VERSION="1.16.7"
 RPC_PORT="8555"
 RPC_URL="http://localhost:${RPC_PORT}/${CHAIN_ID}"
 #SNAPSHOT="https://files.avalonslab.dev/testnet4_bootstrap.tar.gz"
-
-#if [ "$1" == "testnet" ]; then
-#    CHAIN_ID="testnet"
-#fi
 
 echo
 echo "Checking user and access permissions"
