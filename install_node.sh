@@ -6,7 +6,7 @@
 # Discussion, issues and change requests at:
 #   https://t.me/INTDevelopment
 #
-# Usage: wget -qO- https://raw.githubusercontent.com/avalonslab/int-misc/master/install_testnet4.sh | bash -
+# Usage: bash <(wget -qO- https://raw.githubusercontent.com/avalonslab/int-node-setup/main/install_node.sh)
 
 cat << 'FIG'
  _  __    _     ____   __  __     _
@@ -27,7 +27,7 @@ error() {
 }
 trap 'error ${LINENO}' ERR
 
-
+echo
 echo "Which network do you want to use?"
 numchoice=1
 while [ $numchoice != 0 ]; do
