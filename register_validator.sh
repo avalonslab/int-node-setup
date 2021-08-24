@@ -16,8 +16,8 @@ error() {
 }
 trap 'error ${LINENO}' ERR
 
-KEYSTORE_PATH="${HOME}/.intchain/testnet/keystore/"
-RPC_URL="http://localhost:8555/testnet"
+KEYSTORE_PATH="${HOME}/.intchain/intchain/keystore/"
+RPC_URL="http://localhost:8555/intchain"
 #SECURITY_DEPOSIT="0xDE0B6B3A7640000" # 1 INT
 #BALANCE_NEEDED="0xF43FC2C04EE0000" # 1.1 INT
 SECURITY_DEPOSIT="0xD3C21BCECCEDA1000000" # 1000000 INT
@@ -130,10 +130,10 @@ create_new_wallet () {
 }
 
 create_bls_key () {
-    if [ -e "${HOME}/.intchain/testnet/priv_validator.json" ]; then
-        PRIV_VALIDATOR_DATA=$(cat "${HOME}/.intchain/testnet/priv_validator.json")
+    if [ -e "${HOME}/.intchain/intchain/priv_validator.json" ]; then
+        PRIV_VALIDATOR_DATA=$(cat "${HOME}/.intchain/intchain/priv_validator.json")
     else
-        PRIV_VALIDATOR_DATA=$($(command -v intchain) --testnet create-validator ${WALLET_ADDRESS})
+        PRIV_VALIDATOR_DATA=$($(command -v intchain) create-validator ${WALLET_ADDRESS})
     fi
 
     if [ -z "${PRIV_VALIDATOR_DATA}" ]; then
@@ -185,7 +185,7 @@ enough_balance () {
 backup_node () {
     mkdir -p "${HOME}/backup"
     cp "${KEYSTORE_PATH}/UTC"* "${HOME}/backup/"
-    cp "${HOME}/.intchain/testnet/priv_validator.json" "${HOME}/backup/"
+    cp "${HOME}/.intchain/intchain/priv_validator.json" "${HOME}/backup/"
     echo
     echo "Your priv_validator.json and keystore files were backuped to: ${HOME}/backup"
     echo "Please download these files and keep them somewhere safe. You need these files to restore your node and to access your wallet."
@@ -197,7 +197,7 @@ check_existing_wallets () {
 
     PS3="Use number to select a wallet or 'stop' to cancel: "
 
-    select filename in ${HOME}/.intchain/testnet/keystore/UTC*
+    select filename in ${HOME}/.intchain/intchain/keystore/UTC*
     do
         if [ "$REPLY" == stop ]; then
             exit
