@@ -5,7 +5,7 @@
 # Discussion, issues and change requests at:
 #   https://t.me/INTDevelopment
 #
-# Usage: bash <(wget -qO- https://raw.githubusercontent.com/avalonslab/int-misc/master/register_validator_testnet4.sh)
+# Usage: bash <(wget -qO- https://raw.githubusercontent.com/avalonslab/int-node-setup/main/register_validator.sh)
 
 error() {
   local parent_lineno="$1"
